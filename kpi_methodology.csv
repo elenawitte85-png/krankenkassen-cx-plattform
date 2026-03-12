@@ -1,0 +1,11 @@
+kpi_name,dimension,beschreibung,quelle,bewertung_logik,gewichtung_im_cx_score
+Zusatzbeitrag,Preis,Höhe des Zusatzbeitrags der Krankenkasse,Bundesgesundheitsministerium; GKV-Spitzenverband,Niedriger Beitrag = höherer Score (Skalierung zwischen günstigster und teuerster Kasse),0.15
+App Rating,Digital,Bewertung der Krankenkassen-App durch Nutzer,Apple App Store; Google Play Store,Rating wird auf Skala 0-100 normiert (4.5 Sterne ≈ 90 Punkte),0.07
+Digitale Services,Digital,Anzahl und Qualität digitaler Services (Online-Anträge, ePA, Upload etc.),Kassenwebsites; Digitalstudien,Score basiert auf Anzahl verfügbarer digitaler Funktionen,0.07
+Online Antragsquote,Digital,Anteil der Leistungsanträge, die digital eingereicht werden,Kassenberichte; Digitalisierungsberichte,Höherer Anteil = höherer Score,0.06
+Erstlösungsquote,Service,Anteil der Kundenanliegen die im ersten Kontakt gelöst werden,ServiceValue Studien; interne Servicekennzahlen,>85% = Top Score,70–85% = mittlerer Score,<70% = niedriger Score,0.12
+Bearbeitungszeit Leistungsantrag,Service,Durchschnittliche Bearbeitungsdauer von Leistungsanträgen,Kassenberichte; Branchenstudien,Kürzere Bearbeitungszeit = höherer Score,0.10
+Beschwerdequote,Effizienz,Anzahl Beschwerden pro 1000 Mitglieder,Bundesamt für soziale Sicherung; Verbraucherportale,Niedrigere Beschwerdequote = höherer Score,0.07
+Kontaktquote,Effizienz,Anzahl Kundenkontakte pro Fall,Kasseninterne KPI; Branchenstudien,Weniger Kontakte = effizientere Prozesse,0.06
+Präventionsprogramme,Leistung,Angebot an Präventionskursen und Gesundheitsprogrammen,Kassenwebsites; Präventionsberichte,Mehr Programme = höherer Score,0.07
+Reputation Score,Marke,Öffentliche Wahrnehmung der Krankenkasse,Kundenbewertungen; Social Media; Studien,Höhere Reputation = höherer Score,0.10
