@@ -50,3 +50,26 @@ st.sidebar.markdown("""
 **Bonus_Index:** Bonus-/Präventionsangebote (0–10)  
 **Praeventions_Index:** Qualität der Präventionsprogramme (0–10)
 """)
+st.dataframe(df, tooltip={
+    "Gesamt_Score": "Gesamtbewertung 0–100. Quelle: health-insurance.de, DISQ. Scoring: 40% Service, 30% Bonus/Prävention, 30% Digital",
+    "Service_Index": "Kundenservice 0–100. Quelle: DISQ ServiceValue. Scoring: Mittelwert aus Umfragen",
+    "Reputation_Score": "Online-Reputation 0–100. Quelle: Bewertungsportale, Social Media. Scoring: aggregiertes Sentiment",
+    "Social_Media_Sentiment": "Anteil positiver Erwähnungen (%). Quelle: Social Media Monitoring",
+    "Zusatzbeitrag": "Beitrag 2026 (%). Quelle: Kassen-Websites, Zusatzbeitrag.net",
+    "Digital_Score": "0–10 Punkte. Quelle: App Store, Focus Money Siegel",
+    "Trend_12M": "Veränderung Gesamt_Score ggü. Vorjahr",
+    "Bonus_Index": "0–10 Punkte. Quelle: Kassen-Websites, Siegel",
+    "Praeventions_Index": "0–10 Punkte. Quelle: Kassen-Websites, Siegel"
+})
+st.sidebar.subheader("KPI-Erklärungen")
+st.sidebar.markdown("""
+**Gesamt_Score:** Gesamtbewertung 0–100, aggregiert aus Service, Bonus/Prävention, Digital  
+**Service_Index:** 0–100, Kundenzufriedenheit (DISQ/ServiceValue)  
+**Reputation_Score:** 0–100, Online-Reputation (Social Media, Bewertungsportale)  
+**Social_Media_Sentiment:** % positiver Erwähnungen in Social Media  
+**Zusatzbeitrag:** Beitragssatz 2026 (%)  
+**Digital_Score:** 0–10, Bewertung der Apps & digitalen Services  
+**Trend_12M:** Veränderung Gesamt_Score ggü. Vorjahr  
+**Bonus_Index:** 0–10, Qualität/Anzahl von Bonusprogrammen  
+**Praeventions_Index:** 0–10, Qualität/Anzahl Präventionsmaßnahmen
+""")
