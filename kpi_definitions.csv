@@ -1,0 +1,7 @@
+kpi_name,beschreibung,bewertung
+Service Index,Kundenservice Qualität basierend auf Erstlösungsquote Wartezeit Bearbeitungsdauer,0-100 Benchmark
+Digital Index,Digitalisierungsgrad App Online Services und digitale Anträge,0-100 Benchmark
+Preis Index,Wettbewerbsfähigkeit des Zusatzbeitrags,100 = günstigste Kasse
+Praeventions Index,Angebot an Gesundheits und Präventionsprogrammen,0-100 Benchmark
+Effizienz Index,Prozessqualität Bearbeitungszeit Kontaktquote Beschwerden,0-100 Benchmark
+CX Gesamt Score,gewichteter Gesamtscore aus allen Dimensionen,0-100
