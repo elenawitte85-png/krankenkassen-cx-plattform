@@ -1,0 +1,12 @@
+dimension,kpi,gewichtung_innerhalb_dimension
+Service,Erstlösungsquote,0.4
+Service,Bearbeitungszeit Leistungsantrag,0.35
+Service,Kontaktquote,0.25
+Digital,App Rating,0.4
+Digital,Digitale Services,0.35
+Digital,Online Antragsquote,0.25
+Effizienz,Beschwerdequote,0.6
+Effizienz,Kontaktquote,0.4
+Praevention,Präventionsprogramme,1.0
+Preis,Zusatzbeitrag,1.0
+Reputation,Reputation Score,1.0
