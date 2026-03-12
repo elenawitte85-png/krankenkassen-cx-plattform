@@ -1,0 +1,21 @@
+kasse_id,krankenkasse_name,kassentyp,mitglieder
+1,Techniker Krankenkasse,Ersatzkasse,11600000
+2,BARMER,Ersatzkasse,8700000
+3,DAK-Gesundheit,Ersatzkasse,5500000
+4,SBK Siemens-Betriebskrankenkasse,Ersatzkasse,1000000
+5,HEK Hanseatische Krankenkasse,Ersatzkasse,500000
+6,hkk Krankenkasse,BKK,900000
+7,Mobil Krankenkasse,BKK,1100000
+8,Audi BKK,BKK,700000
+9,Bosch BKK,BKK,1000000
+10,mhplus Krankenkasse,BKK,600000
+11,Novitas BKK,BKK,500000
+12,pronova BKK,BKK,650000
+13,AOK Bayern,AOK,4600000
+14,AOK Baden-Württemberg,AOK,4500000
+15,AOK PLUS,AOK,3500000
+16,AOK Hessen,AOK,1800000
+17,IKK classic,IKK,3000000
+18,IKK Südwest,IKK,650000
+19,VIACTIV Krankenkasse,Sonstige,750000
+20,KNAPPSCHAFT,Sonstige,1600000
