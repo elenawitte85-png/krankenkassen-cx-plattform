@@ -1,37 +1,37 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Krankenkassen CX Plattform", layout="wide")
-st.title("Krankenkassen CX Analyse")
+st.set_page_config(page_title="Krankenkassen CX Plattform – erweitert", layout="wide")
+st.title("Krankenkassen CX Analyse – Praxisnahe KPIs")
 
 # Daten laden
 df = pd.read_csv("data.csv")
 
-# Datenübersicht
-st.subheader("Datenübersicht")
+# Tabellenübersicht
+st.subheader("Alle Krankenkassen und KPIs")
 st.dataframe(df)
 
-# Ranking Gesamt-Score
-st.subheader("Ranking Gesamt-Score")
-st.table(df.sort_values("Gesamt_Score", ascending=False)[["Krankenkasse", "Gesamt_Score"]])
+# Rankings nach KPIs
+st.subheader("Ranking nach Gesamt_Score")
+st.table(df.sort_values("Gesamt_Score", ascending=False)[["Krankenkasse","Gesamt_Score","Digital_Score"]])
 
-# Ranking Kundenzufriedenheit
-st.subheader("Ranking Kundenzufriedenheit")
-st.table(df.sort_values("Kunden_Zufriedenheit", ascending=False)[["Krankenkasse", "Kunden_Zufriedenheit"]])
+st.subheader("Ranking nach Service_Index")
+st.table(df.sort_values("Service_Index", ascending=False)[["Krankenkasse","Service_Index"]])
 
-# Ranking Reputation
-st.subheader("Ranking Reputation")
-st.table(df.sort_values("Reputation", ascending=False)[["Krankenkasse", "Reputation"]])
+st.subheader("Ranking nach Reputation_Score")
+st.table(df.sort_values("Reputation_Score", ascending=False)[["Krankenkasse","Reputation_Score"]])
 
-# SWOT Analyse
-st.subheader("SWOT Analyse")
+st.subheader("Ranking nach Social_Media_Sentiment")
+st.table(df.sort_values("Social_Media_Sentiment", ascending=False)[["Krankenkasse","Social_Media_Sentiment"]])
+
+st.subheader("SWOT-Analyse")
 kasse = st.selectbox("Krankenkasse wählen", df["Krankenkasse"])
-kasse_data = df[df["Krankenkasse"] == kasse].iloc[0]
+d = df[df["Krankenkasse"]==kasse].iloc[0]
 
 st.markdown(f"""
-**Strength:** Hohe Gesamtbewertung ({kasse_data['Gesamt_Score']})  
-**Weakness:** Zusatzbeitrag ({kasse_data['Zusatzbeitrag']})  
-**Opportunity:** Verbesserung der Kundenzufriedenheit ({kasse_data['Kunden_Zufriedenheit']})  
-**Threat:** Online-Reputation ({kasse_data['Reputation']})  
-**Digital App:** {kasse_data['App_Award']}
+**Strength:** Gesamt-Score {d['Gesamt_Score']} und Digital-Score {d['Digital_Score']}  
+**Weakness:** Zusatzbeitrag {d['Zusatzbeitrag']}%  
+**Opportunity:** Service_Index {d['Service_Index']} & Bonus_Index {d['Bonus_Index']}  
+**Threat:** Reputation_Score {d['Reputation_Score']} & Social_Media_Sentiment {d['Social_Media_Sentiment']}  
+**Präventionsprogramme:** {d['Praeventions_Index']} (Index)  
 """)
