@@ -1,75 +1,53 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Krankenkassen CX Plattform – erweitert", layout="wide")
-st.title("Krankenkassen CX Analyse – Praxisnahe KPIs")
+st.set_page_config(page_title="Krankenkassen CX Plattform", layout="wide")
+st.title("Krankenkassen CX Analyse – Praxisnahe KPIs & Empfehlungen")
 
 # Daten laden
 df = pd.read_csv("data.csv")
 
-# Tabellenübersicht
+# Empfehlungen (Beispiel Mobil Krankenkasse)
+recommendations = {
+    "Mobil Krankenkasse": [
+        {"Maßnahme": "Service-Schulungen für Kundenservice-Mitarbeiter",
+         "Begründung": "Service_Index 67.5 liegt deutlich unter Top-Kassen (~75-77), Bearbeitungszeit und Freundlichkeit verbessern."},
+        {"Maßnahme": "Einführung Ticket-Tracking & SLA-System",
+         "Begründung": "Service_Index niedrig → Bearbeitungszeiten messen und standardisieren."},
+        {"Maßnahme": "Social-Media-Monitoring und aktive Reaktion",
+         "Begründung": "Social_Media_Sentiment nur 56% → Beschwerden schneller beantworten, positives Feedback sichtbar machen."},
+        {"Maßnahme": "App-Optimierung und neue digitale Features",
+         "Begründung": "Digital_Score 7.6/10 → Features wie Upload von Dokumenten, Chat, Online-Termine steigern UX."},
+        {"Maßnahme": "Bonus- und Präventionsprogramme ausbauen",
+         "Begründung": "Bonus_Index und Präventions_Index nur 5/10 → Maßnahmen wie Fitnesskurse, Gamification, Kooperationen erhöhen Kundenzufriedenheit."},
+        {"Maßnahme": "Preisvorteil klar kommunizieren",
+         "Begründung": "Zusatzbeitrag 2.75% unter Branchendurchschnitt → Vorteil als Marketing nutzen."},
+        {"Maßnahme": "Trend_12M regelmäßig überwachen",
+         "Begründung": "Trend_12M=0 → Fortschritt messen, Maßnahmen priorisieren (Impact/Aufwand)."}
+    ]
+}
+
+# Tabellenansicht
 st.subheader("Alle Krankenkassen und KPIs")
 st.dataframe(df)
 
-# Rankings nach KPIs
-st.subheader("Ranking nach Gesamt_Score")
-st.table(df.sort_values("Gesamt_Score", ascending=False)[["Krankenkasse","Gesamt_Score","Digital_Score"]])
-
-st.subheader("Ranking nach Service_Index")
-st.table(df.sort_values("Service_Index", ascending=False)[["Krankenkasse","Service_Index"]])
-
-st.subheader("Ranking nach Reputation_Score")
-st.table(df.sort_values("Reputation_Score", ascending=False)[["Krankenkasse","Reputation_Score"]])
-
-st.subheader("Ranking nach Social_Media_Sentiment")
-st.table(df.sort_values("Social_Media_Sentiment", ascending=False)[["Krankenkasse","Social_Media_Sentiment"]])
-
-st.subheader("SWOT-Analyse")
+# Kasse auswählen
+st.subheader("SWOT & Handlungsempfehlungen")
 kasse = st.selectbox("Krankenkasse wählen", df["Krankenkasse"])
-d = df[df["Krankenkasse"]==kasse].iloc[0]
 
+# SWOT
+d = df[df["Krankenkasse"]==kasse].iloc[0]
 st.markdown(f"""
 **Strength:** Gesamt-Score {d['Gesamt_Score']} und Digital-Score {d['Digital_Score']}  
-**Weakness:** Zusatzbeitrag {d['Zusatzbeitrag']}%  
-**Opportunity:** Service_Index {d['Service_Index']} & Bonus_Index {d['Bonus_Index']}  
-**Threat:** Reputation_Score {d['Reputation_Score']} & Social_Media_Sentiment {d['Social_Media_Sentiment']}  
-**Präventionsprogramme:** {d['Praeventions_Index']} (Index)  
+**Weakness:** Zusatzbeitrag {d['Zusatzbeitrag']}%, Service_Index {d['Service_Index']}  
+**Opportunity:** Bonus_Index {d['Bonus_Index']}, Präventions_Index {d['Praeventions_Index']}  
+**Threat:** Reputation_Score {d['Reputation_Score']}, Social_Media_Sentiment {d['Social_Media_Sentiment']}  
 """)
-st.dataframe(df)
 
-# Oder Detailinfos als Sidebar-Tooltip
-st.sidebar.subheader("KPI Erklärungen")
-st.sidebar.markdown("""
-**Gesamt_Score:** Gesamtbewertung 0–100 aus Service, Digital, Zusatzleistungen  
-**Service_Index:** Bewertung Kundendienst (Bearbeitung, Freundlichkeit, Erreichbarkeit)  
-**Reputation_Score:** Online-Reputation aus Social Media und Portalen  
-**Social_Media_Sentiment:** % positive Erwähnungen online  
-**Zusatzbeitrag:** Beitragssatz 2026 (%)  
-**Digital_Score:** Bewertung digitaler Services / Apps  
-**Trend_12M:** Veränderung Gesamt_Score ggü. Vorjahr  
-**Bonus_Index:** Bonus-/Präventionsangebote (0–10)  
-**Praeventions_Index:** Qualität der Präventionsprogramme (0–10)
-""")
-st.dataframe(df, tooltip={
-    "Gesamt_Score": "Gesamtbewertung 0–100. Quelle: health-insurance.de, DISQ. Scoring: 40% Service, 30% Bonus/Prävention, 30% Digital",
-    "Service_Index": "Kundenservice 0–100. Quelle: DISQ ServiceValue. Scoring: Mittelwert aus Umfragen",
-    "Reputation_Score": "Online-Reputation 0–100. Quelle: Bewertungsportale, Social Media. Scoring: aggregiertes Sentiment",
-    "Social_Media_Sentiment": "Anteil positiver Erwähnungen (%). Quelle: Social Media Monitoring",
-    "Zusatzbeitrag": "Beitrag 2026 (%). Quelle: Kassen-Websites, Zusatzbeitrag.net",
-    "Digital_Score": "0–10 Punkte. Quelle: App Store, Focus Money Siegel",
-    "Trend_12M": "Veränderung Gesamt_Score ggü. Vorjahr",
-    "Bonus_Index": "0–10 Punkte. Quelle: Kassen-Websites, Siegel",
-    "Praeventions_Index": "0–10 Punkte. Quelle: Kassen-Websites, Siegel"
-})
-st.sidebar.subheader("KPI-Erklärungen")
-st.sidebar.markdown("""
-**Gesamt_Score:** Gesamtbewertung 0–100, aggregiert aus Service, Bonus/Prävention, Digital  
-**Service_Index:** 0–100, Kundenzufriedenheit (DISQ/ServiceValue)  
-**Reputation_Score:** 0–100, Online-Reputation (Social Media, Bewertungsportale)  
-**Social_Media_Sentiment:** % positiver Erwähnungen in Social Media  
-**Zusatzbeitrag:** Beitragssatz 2026 (%)  
-**Digital_Score:** 0–10, Bewertung der Apps & digitalen Services  
-**Trend_12M:** Veränderung Gesamt_Score ggü. Vorjahr  
-**Bonus_Index:** 0–10, Qualität/Anzahl von Bonusprogrammen  
-**Praeventions_Index:** 0–10, Qualität/Anzahl Präventionsmaßnahmen
-""")
+# Handlungsempfehlungen
+st.markdown("### Konkrete Handlungsempfehlungen & Begründung")
+if kasse in recommendations:
+    for rec in recommendations[kasse]:
+        st.markdown(f"- **Maßnahme:** {rec['Maßnahme']}\n  - **Warum:** {rec['Begründung']}")
+else:
+    st.info("Keine spezifischen Empfehlungen verfügbar für diese Kasse.")
